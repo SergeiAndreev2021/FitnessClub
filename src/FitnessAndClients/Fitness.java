@@ -29,20 +29,18 @@ public class Fitness {
         System.out.println(" В клубе зарегистрированы :");
         System.out.println(" Зона "+ Zone.SWIMMING_POOL);
         for (Abonement a : swimmimgpool){
-            if (a != null)
-                System.out.println(a.getPerson());
+            if (a != null)  System.out.println(a.getPerson());
         }
         System.out.println(" Зона "+ Zone.POWER_LIFT);
         for (Abonement a : powerLift){
-            if (a != null)
-                System.out.println(a.getPerson());
+            if (a != null)   System.out.println(a.getPerson());
+
         }
         System.out.println(" Зона "+ Zone.GROUP);
         for (Abonement a : groupExercise){
-            if (a != null)
-                System.out.println(a.getPerson());
+            if (a != null) System.out.println(a.getPerson());
         }
-    };
+    }
 
     public void addVisitor(Abonement abonement, Zone zone) {
         if (abonement == null || zone == null)
