@@ -9,20 +9,18 @@ public class Abonement {
     private int id;
     private LocalDate registred ;
     private LocalDate expired;
-    private LocalTime start;        //= LocalTime.of(8,0); //  дополнительно ставить время
-    private LocalTime end;         // = LocalTime.of(22,0); //   //constructor ??
     private Person person;
-    private String [] zones;
+    private AbonementType type;
 
 
-     Abonement( LocalDate registred, LocalTime start, LocalTime end, String[] zones){
-         if (zones == null)
-             throw  new IllegalArgumentException("wrong zones data");
+
+     Abonement( LocalDate registred, AbonementType type ){
+         if (registred == null || type == null || registred.isAfter(LocalDate.now()))
+             throw  new IllegalArgumentException("wrong  data");
         this.id = ++count;
         this.registred = registred;
-        this.start = start;
-        this.end = end;
-        this.zones = zones;
+        this.type = type;
+
      }
 
      public void setPerson(Person person){
@@ -30,8 +28,11 @@ public class Abonement {
          this.person = Objects.requireNonNull(person,"wrong person data");
      }
 
-     public void setExpired(LocalDate time) {
-         this.expired = Objects.requireNonNull(time,"wrong time data");
+     public void setExpired(LocalDate time)
+     {
+         if ( time == null || time.isBefore(registred) || time.isBefore(LocalDate.now()) )
+             throw new IllegalArgumentException("wrong time data");
+         this.expired = time;
     }
 
     public LocalDate getRegistred() {
@@ -42,18 +43,9 @@ public class Abonement {
         return person;
     }
 
-    public String[] getZones() {
-        return zones;
-    }
-    public LocalDate getExpired(){
-         return expired;
-    }
+    public LocalDate getExpired(){ return expired; }
 
-    public LocalTime getEnd() {
-        return end;
-    }
-
-    public LocalTime getStart() {
-        return start;
+    public AbonementType getType() {
+        return type;
     }
 }
