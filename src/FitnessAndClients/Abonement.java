@@ -17,7 +17,7 @@ public class Abonement {
      Abonement( LocalDate registred, AbonementType type ){
          if (registred == null || type == null || registred.isAfter(LocalDate.now()))
              throw  new IllegalArgumentException("wrong  data");
-        this.id = ++count;
+        this.id = count++;
         this.registred = registred;
         this.type = type;
 
